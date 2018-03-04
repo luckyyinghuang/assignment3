@@ -4,6 +4,24 @@ Created on 27 Feb 2018
 @author: 25142
 '''
 """ Console Script for test"""
+import sys
+import click
+import test
+@click.command()
+@click.option("--input", default=None, help="input URI (file or URL)")
+def main(filename,N):
+    """Console script for led_tester."""
+    lights=LightTest(N)
+    instructions=parsefile(filename)
+    for cmd in instructions:
+        lights.apply(cmd)
+    print("#occupied: ",lights.count())
+    
+
+if __name__ == "__main__":
+    sys.exit(main())  # pragma: no cover
+
+
 import urllib.request
 help(urllib.request.urlopen)
 # make the request
@@ -16,15 +34,11 @@ def parseInput(input):
             uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
             req = urllib.request.urlopen(uri)
             buffer = req.read().decode('utf-8')
-                
-        else:
-            # use open(uri) 
-            uri = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
             r = requests.get(uri).text
             print('\n'.join(r.split('\n')[:5]))
-            
-        return 
-            # use readlines to read a line a time
+                
+        else:
+             # use readlines to read a line a time
             filename = "data/data.txt"
             with open(filename) as f:
                 for line in f.readlines():
@@ -36,7 +50,22 @@ def parseInput(input):
             buffer = open(filename).read()
             for line in buffer.split('\n'):
                 # process line
-              
+                return 
+           
+def parsefile(input):
+    if input.startswith('http'):
+        # use requests
+        pass
+    else:
+        # read from disk
+        N,instructions=None,[]
+        with open(input,'r') as f:
+            N=int(f.readline())
+            for line in f.readlines():
+                instructions.append(line)
+        # haven't written the code yet..
+        return N,instructions
+    return              
     
 
 
