@@ -14,7 +14,7 @@ setup(name="assignment3",
       licence="GPL3",
       packages=['assignment3'],
       entry_points={'console_scripts':
-                    ['solve_led=assignment3.main:main'] 
+                    ['solve_led=main:main'] 
                     },
       
           )

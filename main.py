@@ -3,15 +3,18 @@ Created on 27 Feb 2018
 
 @author: 25142
 '''
+from test.test import LightTest
 """ Console Script for test"""
 import sys
 import click
-import test
+import re
+help(re.match)
+
 @click.command()
 @click.option("--input", default=None, help="input URI (file or URL)")
 def main(filename,N):
     """Console script for led_tester."""
-    lights=LightTest(N)
+    lights= LightTest(N)
     instructions=parsefile(filename)
     for cmd in instructions:
         lights.apply(cmd)
@@ -57,10 +60,12 @@ def parsefile(input):
     else:
         # read from disk
         N,instructions=None,[]
+        pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+) \s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
         with open(input,'r') as f:
             N=int(f.readline())
             for line in f.readlines():
-                instructions.append(line)
+                result=pat.match(line)
+                instructions.append(result)
         # haven't written the code yet..
         return N,instructions
     return              
