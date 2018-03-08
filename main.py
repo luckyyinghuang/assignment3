@@ -15,9 +15,7 @@ def main(filename,N):
     instructions=parsefile(filename)
     for cmd in instructions:
         lights.apply(cmd)
-    print("#occupied: ",lights.count())
-    
-
+    print("#occupied: ",lights.count())   
 if __name__ == "__main__":
     sys.exit(main())  # pragma: no cover
 

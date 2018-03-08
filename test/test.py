@@ -32,16 +32,16 @@ class LightTest:
         elif cmd is 'turn off':
             for 0 turns on 1
             print("turn off")
-            
+                
             
         
     def count(self):
         count=0
         for row in lights:
             for light in row:
-                if(light==1):
-                    on=on+1
-        print("The number of lights on is ", on)
+                if(light==True):
+                    count=count+1
+        print("The number of lights on is ", count)
         return count
     
 
