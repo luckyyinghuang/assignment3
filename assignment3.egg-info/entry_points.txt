@@ -1,0 +1,3 @@
+[console_scripts]
+solve_led = main:main
+

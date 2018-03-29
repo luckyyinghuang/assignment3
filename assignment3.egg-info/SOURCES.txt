@@ -1,0 +1,11 @@
+README.md
+setup.py
+assignment3/__init__.py
+assignment3/main.py
+assignment3/test.py
+assignment3.egg-info/PKG-INFO
+assignment3.egg-info/SOURCES.txt
+assignment3.egg-info/dependency_links.txt
+assignment3.egg-info/entry_points.txt
+assignment3.egg-info/top_level.txt
+name/__init__.py
